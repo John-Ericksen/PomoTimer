@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -8,7 +7,7 @@ const INTERVAL_IN_MILISECONDS = 100;
 export default function PomodoroTimer() {
   const [time, setTime] = useState(TIME_IN_MILISECONDS_TO_COUNTDOWN);
   const [referenceTime, setReferenceTime] = useState(Date.now());
-  const [isCountingDown, setIsCountingDown] = useState(true);
+  const [isCountingDown, setIsCountingDown] = useState(false);
 
   // resets reference time so that the next tick only counts 1 second
   function toggleIsCountingDown() {
@@ -66,7 +65,7 @@ export default function PomodoroTimer() {
   return (
     <div>
       <p>{`${minutesString}:${secondsString}`}</p>
-      <button onClick={toggleIsCountingDown}></button>
+      <button onClick={toggleIsCountingDown}>Toggle Timer Active</button>
     </div>
   );
 }
