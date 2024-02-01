@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import './App.css'
-import PomodoroTimer from './components/PomodoroTimer'
+import Main from './components/Main';
 
 function App() {
-  
   return (
     <>
-      <PomodoroTimer/>
+      <Main/>
     </>
   )
 }

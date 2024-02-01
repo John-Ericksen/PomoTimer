@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
-const TIME_IN_MILISECONDS_TO_COUNTDOWN = 1500 * 1000; //1500 for 25 minutes
 const INTERVAL_IN_MILISECONDS = 100;
 
-export default function PomodoroTimer() {
+export default function Timer(props: any) {
+  const TIME_IN_MILISECONDS_TO_COUNTDOWN: number = props.timeToCountdown * 1000;
   const [time, setTime] = useState(TIME_IN_MILISECONDS_TO_COUNTDOWN);
   const [referenceTime, setReferenceTime] = useState(Date.now());
   const [isCountingDown, setIsCountingDown] = useState(false);
@@ -62,10 +62,14 @@ export default function PomodoroTimer() {
     }
   }, [time, isCountingDown]);
 
+  //--------------------------
+
   return (
     <div>
       <p>{`${minutesString}:${secondsString}`}</p>
-      <button onClick={toggleIsCountingDown}>Toggle Timer Active</button>
+      <button onClick={toggleIsCountingDown}>
+        {isCountingDown ? "Pause Timer" : "Start Timer"}
+      </button>
     </div>
   );
 }
