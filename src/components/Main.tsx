@@ -1,5 +1,4 @@
 import Timer from "./Timer";
-import ButtonRow from "./ButtonRow";
 import { useEffect, useState } from "react";
 
 export default function Main() {
@@ -9,7 +8,6 @@ export default function Main() {
 
   return (
     <>
-      <ButtonRow />
       <Timer timerValues={timerValues} />
     </>
   );
