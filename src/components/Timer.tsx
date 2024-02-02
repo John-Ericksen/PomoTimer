@@ -4,8 +4,8 @@ import { useState } from "react";
 const INTERVAL_IN_MILISECONDS = 100;
 
 export default function Timer(props: any) {
-  const TIME_IN_MILISECONDS_TO_COUNTDOWN: number = props.timeToCountdown * 1000;
-  const [time, setTime] = useState(TIME_IN_MILISECONDS_TO_COUNTDOWN);
+  const timerValues = [props.timerValues[0], props.timerValues[1], props.timerValues[2]];
+  const [time, setTime] = useState(timerValues[0]);
   const [referenceTime, setReferenceTime] = useState(Date.now());
   const [isCountingDown, setIsCountingDown] = useState(false);
 
@@ -14,6 +14,7 @@ export default function Timer(props: any) {
     setIsCountingDown((prevIsCounting) => !prevIsCounting);
     setReferenceTime(Date.now());
   }
+
 
   /* parses the time in seconds from the time in milleseconds,
  converts it to a string and adds a leading zero if neccessary. */
@@ -37,7 +38,7 @@ export default function Timer(props: any) {
   useEffect(() => {
     if (isCountingDown) {
       function countDownUntilZero() {
-        setTime((prevTime) => {
+        setTime((prevTime: number) => {
           if (prevTime <= 0) return 0;
 
           const now = Date.now();
