@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
-const INTERVAL_IN_MILISECONDS = 100;
+const INTERVAL_IN_MILISECONDS = 1;
 
 export default function Timer(props: any) {
   const timerValues = [
@@ -19,27 +19,20 @@ export default function Timer(props: any) {
     setReferenceTime(Date.now());
   }
 
-  function updateTimerText() {
-    setSecondsString(
-      Math.floor((time / 1000) % 60) < 10
-        ? `0${Math.floor((time / 1000) % 60)}`
-        : `${Math.floor((time / 1000) % 60)}`
-    );
-
-    //uses the same logic as the declaration of the variable to parse minutes.
-    setMinutesString(
-      Math.floor((time / 1000 / 60) % 60) < 10
-        ? `0${Math.floor((time / 1000 / 60) % 60)}`
-        : `${Math.floor((time / 1000 / 60) % 60)}`
-    );
-  }
-
-  useEffect(updateTimerText, [time]);
-
   function shortBreak() {
     setIsCountingDown(false);
-    setReferenceTime(Date.now());
     setTime(props.timerValues[1]);
+    setReferenceTime(Date.now());
+    setSecondsString(
+      Math.floor((props.timerValues[1] / 1000) % 60) < 10
+        ? `0${Math.floor((props.timerValues[1] / 1000) % 60)}`
+        : `${Math.floor((props.timerValues[1] / 1000) % 60)}`
+    );
+    setMinutesString(
+      Math.floor((props.timerValues[1] / 1000 / 60) % 60) < 10
+        ? `0${Math.floor((props.timerValues[1] / 1000 / 60) % 60)}`
+        : `${Math.floor((props.timerValues[1] / 1000 / 60) % 60)}`
+    );
   }
 
   /* parses the time in seconds from the time in milleseconds,
@@ -61,17 +54,34 @@ export default function Timer(props: any) {
       : `${Math.floor((time / 1000 / 60) % 60)}`
   );
 
+  function updateTimerText() {
+    setSecondsString(
+      Math.floor((time / 1000) % 60) < 10
+        ? `0${Math.floor((time / 1000) % 60)}`
+        : `${Math.floor((time / 1000) % 60)}`
+    );
+
+    //uses the same logic as the declaration of the variable to parse minutes.
+    setMinutesString(
+      Math.floor((time / 1000 / 60) % 60) < 10
+        ? `0${Math.floor((time / 1000 / 60) % 60)}`
+        : `${Math.floor((time / 1000 / 60) % 60)}`
+    );
+  }
+
   useEffect(() => {
     if (isCountingDown) {
       function countDownUntilZero() {
-        setTime((prevTime: number) => {
-          if (prevTime <= 0) return 0;
+        if (isCountingDown) {
+          setTime((prevTime: number) => {
+            if (prevTime <= 0) return 0;
 
-          const now = Date.now();
-          const interval = now - referenceTime;
-          setReferenceTime(now);
-          return prevTime - interval;
-        });
+            const now = Date.now();
+            const interval = now - referenceTime;
+            setReferenceTime(now);
+            return prevTime - interval;
+          });
+        }
       }
       updateTimerText();
       setTimeout(countDownUntilZero, INTERVAL_IN_MILISECONDS);
