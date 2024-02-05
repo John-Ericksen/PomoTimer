@@ -13,26 +13,9 @@ export default function Timer(props: any) {
   const [referenceTime, setReferenceTime] = useState(Date.now());
   const [isCountingDown, setIsCountingDown] = useState(false);
 
-  // resets reference time so that the next tick only counts 1 second
   function toggleIsCountingDown() {
     setIsCountingDown((prevIsCounting) => !prevIsCounting);
     setReferenceTime(Date.now());
-  }
-
-  function shortBreak() {
-    setIsCountingDown(false);
-    setTime(props.timerValues[1]);
-    setReferenceTime(Date.now());
-    setSecondsString(
-      Math.floor((props.timerValues[1] / 1000) % 60) < 10
-        ? `0${Math.floor((props.timerValues[1] / 1000) % 60)}`
-        : `${Math.floor((props.timerValues[1] / 1000) % 60)}`
-    );
-    setMinutesString(
-      Math.floor((props.timerValues[1] / 1000 / 60) % 60) < 10
-        ? `0${Math.floor((props.timerValues[1] / 1000 / 60) % 60)}`
-        : `${Math.floor((props.timerValues[1] / 1000 / 60) % 60)}`
-    );
   }
 
   /* parses the time in seconds from the time in milleseconds,
@@ -42,12 +25,10 @@ export default function Timer(props: any) {
       ? `0${Math.floor((time / 1000) % 60)}`
       : `${Math.floor((time / 1000) % 60)}`
   );
+
   /* parses the time in milliseconds into minutes, converts to a 
   string, and adds a leading 0 if the minutes remaining is less than 
-  10 (for styling). could probably be broken up into multiple lines 
-  for clarity, but then would require more useState calls, 
-  which may impact performance, so calculations are done inline. */
-
+  10 (for styling). */
   const [minutesString, setMinutesString] = useState(
     Math.floor((time / 1000 / 60) % 60) < 10
       ? `0${Math.floor((time / 1000 / 60) % 60)}`
@@ -67,6 +48,43 @@ export default function Timer(props: any) {
         ? `0${Math.floor((time / 1000 / 60) % 60)}`
         : `${Math.floor((time / 1000 / 60) % 60)}`
     );
+  }
+
+  /*sets the timer text to one of the three default values 
+  for work timer, short break, or long break, depending 
+  on the int passed */
+  function setTimerTextToDefault(value: number) {
+    setSecondsString(
+      Math.floor((props.timerValues[value] / 1000) % 60) < 10
+        ? `0${Math.floor((props.timerValues[value] / 1000) % 60)}`
+        : `${Math.floor((props.timerValues[value] / 1000) % 60)}`
+    );
+    setMinutesString(
+      Math.floor((props.timerValues[value] / 1000 / 60) % 60) < 10
+        ? `0${Math.floor((props.timerValues[value] / 1000 / 60) % 60)}`
+        : `${Math.floor((props.timerValues[value] / 1000 / 60) % 60)}`
+    );
+  }
+  
+  function workTimer() {
+    setIsCountingDown(false);
+    setTime(props.timerValues[0]);
+    setReferenceTime(Date.now());
+    setTimerTextToDefault(0);
+  }
+
+  function shortBreak() {
+    setIsCountingDown(false);
+    setTime(props.timerValues[1]);
+    setReferenceTime(Date.now());
+    setTimerTextToDefault(1);
+  }
+
+  function longBreak() {
+    setIsCountingDown(false);
+    setTime(props.timerValues[2]);
+    setReferenceTime(Date.now());
+    setTimerTextToDefault(2);
   }
 
   useEffect(() => {
@@ -92,7 +110,10 @@ export default function Timer(props: any) {
 
   return (
     <div>
+      <button onClick={workTimer}>Work Timer</button>
       <button onClick={shortBreak}>Short Break</button>
+      <button onClick={longBreak}>Long Break</button>
+
       <p>{`${minutesString}:${secondsString}`}</p>
       <button onClick={toggleIsCountingDown}>
         {isCountingDown ? "Pause Timer" : "Start Timer"}
