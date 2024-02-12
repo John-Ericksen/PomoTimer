@@ -1,14 +1,18 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import Settings from "./Settings";
 
 const INTERVAL_IN_MILISECONDS = 1;
 
 export default function Timer(props: any) {
+
+  const[currentMode, setCurrentMode] = useState("work");
   const timerValues = [
     props.timerValues[0],
     props.timerValues[1],
     props.timerValues[2],
   ];
+
   const [time, setTime] = useState(timerValues[0]);
   const [referenceTime, setReferenceTime] = useState(Date.now());
   const [isCountingDown, setIsCountingDown] = useState(false);
@@ -71,6 +75,7 @@ export default function Timer(props: any) {
     setTime(props.timerValues[0]);
     setReferenceTime(Date.now());
     setTimerTextToDefault(0);
+    setCurrentMode("work");
   }
 
   function shortBreak() {
@@ -78,6 +83,7 @@ export default function Timer(props: any) {
     setTime(props.timerValues[1]);
     setReferenceTime(Date.now());
     setTimerTextToDefault(1);
+    setCurrentMode("short-break")
   }
 
   function longBreak() {
@@ -85,7 +91,35 @@ export default function Timer(props: any) {
     setTime(props.timerValues[2]);
     setReferenceTime(Date.now());
     setTimerTextToDefault(2);
+    setCurrentMode("long-break");
   }
+
+  //for settings updates to work timer
+  useEffect(()=>{
+    if(currentMode==="work") {
+      setTimerTextToDefault(0);
+      setTime(props.timerValues[0]);
+      setReferenceTime(Date.now());
+    }
+  }, [props.timerValues[0]]);
+
+  //for settings updates to short break timer
+  useEffect(()=>{
+    if(currentMode==="short-break") {
+      setTimerTextToDefault(1);
+      setTime(props.timerValues[1]);
+      setReferenceTime(Date.now());
+    }
+  }, [props.timerValues[1]]);
+
+  //for settings updates to long break timer
+  useEffect(()=>{
+    if(currentMode==="long-break") {
+      setTimerTextToDefault(2);
+      setTime(props.timerValues[2]);
+      setReferenceTime(Date.now());
+    }
+  }, [props.timerValues[2]]);
 
   useEffect(() => {
     if (isCountingDown) {
@@ -117,7 +151,7 @@ export default function Timer(props: any) {
       <p>{`${minutesString}:${secondsString}`}</p>
       <button onClick={toggleIsCountingDown}>
         {isCountingDown ? "Pause Timer" : "Start Timer"}
-      </button>
+      </button>      
     </div>
   );
 }
