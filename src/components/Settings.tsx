@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 export default function Settings(props: any) {
+  const [showForm, setShowForm] = useState(false);
+
+  function changeShowForm() {
+    setShowForm((prevShowForm) => !prevShowForm);
+  }
+
   const [workMinutes, setWorkMinutes] = useState(
     `${Math.floor((props.timerValues[0] / 1000 / 60) % 60)}`
   );
@@ -13,20 +19,34 @@ export default function Settings(props: any) {
   );
 
   const updateTimerValues = () => {
-    const workMinutesInput = document.getElementById(
-      "work-minutes-input"
-    ) as HTMLInputElement;
-    const shortBreakMinutesInput = document.getElementById(
-      "short-break-minutes-input"
-    ) as HTMLInputElement;
-    const longBreakMinutesInput = document.getElementById(
-      "long-break-minutes-input"
-    ) as HTMLInputElement;
+    var workMinutesInput: HTMLInputElement;
+    var shortBreakMinutesInput: HTMLInputElement;
+    var longBreakMinutesInput: HTMLInputElement;
 
-   
-    setWorkMinutes(workMinutesInput.value);
-    setShortBreakMinutes(shortBreakMinutesInput.value);
-    setLongBreakMinutes(longBreakMinutesInput.value);
+    if (document.getElementById("work-minutes-input") as HTMLInputElement) {
+      workMinutesInput = document.getElementById(
+        "work-minutes-input"
+      ) as HTMLInputElement;
+      setWorkMinutes(workMinutesInput.value);
+    }
+
+    if (
+      document.getElementById("short-break-minutes-input") as HTMLInputElement
+    ) {
+      shortBreakMinutesInput = document.getElementById(
+        "short-break-minutes-input"
+      ) as HTMLInputElement;
+      setShortBreakMinutes(shortBreakMinutesInput.value);
+    }
+
+    if (
+      document.getElementById("long-break-minutes-input") as HTMLInputElement
+    ) {
+      longBreakMinutesInput = document.getElementById(
+        "long-break-minutes-input"
+      ) as HTMLInputElement;
+      setLongBreakMinutes(longBreakMinutesInput.value);
+    }
   };
 
   useEffect(() => {
@@ -34,29 +54,34 @@ export default function Settings(props: any) {
     props.setTimerValues([
       (parseInt(workMinutes) || 0) * 1000 * 60,
       (parseInt(shortBreakMinutes) || 0) * 1000 * 60,
-      (parseInt(longBreakMinutes) || 0) * 1000 * 60
+      (parseInt(longBreakMinutes) || 0) * 1000 * 60,
     ]); //needs a conversion to ms
   }, [workMinutes, shortBreakMinutes, longBreakMinutes]);
 
   return (
     <>
-      <form action="">
-        <input
-          onChange={updateTimerValues}
-          value={workMinutes}
-          id="work-minutes-input"
-        ></input>
-        <input
-          onChange={updateTimerValues}
-          value={shortBreakMinutes}
-          id="short-break-minutes-input"
-        ></input>
-        <input
-          onChange={updateTimerValues}
-          value={longBreakMinutes}
-          id="long-break-minutes-input"
-        ></input>
-      </form>
+      <button className="settings" onClick={changeShowForm}>
+        Settings
+      </button>
+      {showForm && (
+        <form action="">
+          <input
+            onChange={updateTimerValues}
+            value={workMinutes}
+            id="work-minutes-input"
+          ></input>
+          <input
+            onChange={updateTimerValues}
+            value={shortBreakMinutes}
+            id="short-break-minutes-input"
+          ></input>
+          <input
+            onChange={updateTimerValues}
+            value={longBreakMinutes}
+            id="long-break-minutes-input"
+          ></input>
+        </form>
+      )}
     </>
   );
 }
