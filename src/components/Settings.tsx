@@ -65,17 +65,17 @@ export default function Settings(props: any) {
       </button>
       {showForm && (
         <form action="">
-          <input
+          <input type="number"
             onChange={updateTimerValues}
             value={workMinutes}
             id="work-minutes-input"
           ></input>
-          <input
+          <input type="number"
             onChange={updateTimerValues}
             value={shortBreakMinutes}
             id="short-break-minutes-input"
           ></input>
-          <input
+          <input type="number"
             onChange={updateTimerValues}
             value={longBreakMinutes}
             id="long-break-minutes-input"

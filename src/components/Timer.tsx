@@ -48,9 +48,9 @@ export default function Timer(props: any) {
 
     //uses the same logic as the declaration of the variable to parse minutes.
     setMinutesString(
-      Math.floor((time / 1000 / 60) % 60) < 10
-        ? `0${Math.floor((time / 1000 / 60) % 60)}`
-        : `${Math.floor((time / 1000 / 60) % 60)}`
+      Math.floor((time / 60000)) < 10
+        ? `0${Math.floor((time / 60000))}`
+        : `${Math.floor((time / 60000))}`
     );
   }
 
@@ -64,9 +64,9 @@ export default function Timer(props: any) {
         : `${Math.floor((props.timerValues[value] / 1000) % 60)}`
     );
     setMinutesString(
-      Math.floor((props.timerValues[value] / 1000 / 60) % 60) < 10
-        ? `0${Math.floor((props.timerValues[value] / 1000 / 60) % 60)}`
-        : `${Math.floor((props.timerValues[value] / 1000 / 60) % 60)}`
+      Math.floor((props.timerValues[value] / 60000)) < 10
+        ? `0${Math.floor((props.timerValues[value] / 60000))}`
+        : `${Math.floor((props.timerValues[value] / 60000))}`
     );
   }
   
