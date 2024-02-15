@@ -52,9 +52,9 @@ export default function Settings(props: any) {
   useEffect(() => {
     updateTimerValues();
     props.setTimerValues([
-      (parseInt(workMinutes) || 0) * 1000 * 60,
-      (parseInt(shortBreakMinutes) || 0) * 1000 * 60,
-      (parseInt(longBreakMinutes) || 0) * 1000 * 60,
+      (parseFloat(workMinutes) || 0) * 1000 * 60,
+      (parseFloat(shortBreakMinutes) || 0) * 1000 * 60,
+      (parseFloat(longBreakMinutes) || 0) * 1000 * 60,
     ]); //needs a conversion to ms
   }, [workMinutes, shortBreakMinutes, longBreakMinutes]);
 
