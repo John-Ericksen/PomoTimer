@@ -5,8 +5,7 @@ import Settings from "./Settings";
 const INTERVAL_IN_MILISECONDS = 1;
 
 export default function Timer(props: any) {
-
-  const[currentMode, setCurrentMode] = useState("work");
+  const [currentMode, setCurrentMode] = useState("work");
   const timerValues = [
     props.timerValues[0],
     props.timerValues[1],
@@ -48,9 +47,9 @@ export default function Timer(props: any) {
 
     //uses the same logic as the declaration of the variable to parse minutes.
     setMinutesString(
-      Math.floor((time / 60000)) < 10
-        ? `0${Math.floor((time / 60000))}`
-        : `${Math.floor((time / 60000))}`
+      Math.floor(time / 60000) < 10
+        ? `0${Math.floor(time / 60000)}`
+        : `${Math.floor(time / 60000)}`
     );
   }
 
@@ -64,12 +63,12 @@ export default function Timer(props: any) {
         : `${Math.floor((props.timerValues[value] / 1000) % 60)}`
     );
     setMinutesString(
-      Math.floor((props.timerValues[value] / 60000)) < 10
-        ? `0${Math.floor((props.timerValues[value] / 60000))}`
-        : `${Math.floor((props.timerValues[value] / 60000))}`
+      Math.floor(props.timerValues[value] / 60000) < 10
+        ? `0${Math.floor(props.timerValues[value] / 60000)}`
+        : `${Math.floor(props.timerValues[value] / 60000)}`
     );
   }
-  
+
   function workTimer() {
     setIsCountingDown(false);
     setTime(props.timerValues[0]);
@@ -83,7 +82,7 @@ export default function Timer(props: any) {
     setTime(props.timerValues[1]);
     setReferenceTime(Date.now());
     setTimerTextToDefault(1);
-    setCurrentMode("short-break")
+    setCurrentMode("short-break");
   }
 
   function longBreak() {
@@ -94,32 +93,32 @@ export default function Timer(props: any) {
     setCurrentMode("long-break");
   }
 
-  //for settings updates to work timer
-  useEffect(()=>{
-    if(currentMode==="work") {
+  //for settings updates to work timer, and when long/short break is over
+  useEffect(() => {
+    if (currentMode === "work") {
       setTimerTextToDefault(0);
       setTime(props.timerValues[0]);
       setReferenceTime(Date.now());
     }
-  }, [props.timerValues[0]]);
+  }, [props.timerValues[0], currentMode]);
 
-  //for settings updates to short break timer
-  useEffect(()=>{
-    if(currentMode==="short-break") {
+  //for settings updates to short break timer and when work is over
+  useEffect(() => {
+    if (currentMode === "short-break") {
       setTimerTextToDefault(1);
       setTime(props.timerValues[1]);
       setReferenceTime(Date.now());
     }
-  }, [props.timerValues[1]]);
+  }, [props.timerValues[1], currentMode]);
 
-  //for settings updates to long break timer
-  useEffect(()=>{
-    if(currentMode==="long-break") {
+  //for settings updates to long break timer and when work is over
+  useEffect(() => {
+    if (currentMode === "long-break") {
       setTimerTextToDefault(2);
       setTime(props.timerValues[2]);
       setReferenceTime(Date.now());
     }
-  }, [props.timerValues[2]]);
+  }, [props.timerValues[2], currentMode]);
 
   useEffect(() => {
     if (isCountingDown) {
@@ -133,6 +132,22 @@ export default function Timer(props: any) {
             setReferenceTime(now);
             return prevTime - interval;
           });
+        }
+      }
+      if (time <= 500) {
+        switch (currentMode) {
+          case "work":
+            setCurrentMode("short-break");
+            toggleIsCountingDown();
+            break;
+          case "short-break":
+            setCurrentMode("work");
+            toggleIsCountingDown();
+            break;
+          case "long-break":
+            setCurrentMode("work");
+            toggleIsCountingDown();
+            break;
         }
       }
       updateTimerText();
@@ -151,7 +166,7 @@ export default function Timer(props: any) {
       <p>{`${minutesString}:${secondsString}`}</p>
       <button onClick={toggleIsCountingDown}>
         {isCountingDown ? "Pause Timer" : "Start Timer"}
-      </button>      
+      </button>
     </div>
   );
 }
