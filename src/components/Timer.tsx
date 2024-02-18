@@ -12,7 +12,7 @@ export default function Timer(props: any) {
   ];
 
   const [cyclesCount, setCyclesCount] = useState(props.defaultWorkCycles);
-  useEffect(()=>{
+  useEffect(() => {
     setCyclesCount(props.defaultWorkCycles);
   }, [props.defaultWorkCycles]);
 
@@ -124,6 +124,35 @@ export default function Timer(props: any) {
     }
   }, [props.timerValues[2], currentMode]);
 
+  function nextMode() {
+    switch (currentMode) {
+      case "work":
+        if (cyclesCount > 0) {
+          setCyclesCount((prevCyclesCount: any) => prevCyclesCount - 1);
+          setCurrentMode("short-break");
+        } else {
+          setCurrentMode("long-break");
+          setCyclesCount(props.defaultWorkCycles);
+        }
+        if(isCountingDown===true) {
+          toggleIsCountingDown();
+        }
+        break;
+      case "short-break":
+        setCurrentMode("work");
+        if(isCountingDown===true) {
+          toggleIsCountingDown();
+        }
+        break;
+      case "long-break":
+        setCurrentMode("work");
+        if(isCountingDown===true) {
+          toggleIsCountingDown();
+        }
+        break;
+    }
+  }
+
   useEffect(() => {
     if (isCountingDown) {
       function countDownUntilZero() {
@@ -139,27 +168,7 @@ export default function Timer(props: any) {
         }
       }
       if (time <= 500) {
-        switch (currentMode) {
-          case "work":
-            if (cyclesCount > 0) {
-              setCyclesCount((prevCyclesCount: any) => prevCyclesCount - 1);
-              setCurrentMode("short-break");
-            } 
-            else {
-              setCurrentMode("long-break");
-              setCyclesCount(props.defaultWorkCycles);
-            }
-            toggleIsCountingDown();
-            break;
-          case "short-break":
-            setCurrentMode("work");
-            toggleIsCountingDown();
-            break;
-          case "long-break":
-            setCurrentMode("work");
-            toggleIsCountingDown();
-            break;
-        }
+        nextMode();
       }
       updateTimerText();
       setTimeout(countDownUntilZero, INTERVAL_IN_MILISECONDS);
@@ -178,6 +187,7 @@ export default function Timer(props: any) {
       <button onClick={toggleIsCountingDown}>
         {isCountingDown ? "Pause Timer" : "Start Timer"}
       </button>
+      <button onClick={nextMode}>Skip this timer</button>
     </div>
   );
 }
