@@ -1,5 +1,4 @@
-import Settings from "../Settings";
-import Timer from "../Timer";
+import Timer from "../Timer/Timer";
 import { useState } from "react";
 import "./Content.scss";
 
@@ -16,11 +15,6 @@ export default function Content() {
       <Timer
         timerValues={timerValues}
         setTimerValues={setTimerValues}
-        defaultWorkCycles={defaultworkCycles}
-      />
-      <Settings
-        setTimerValues={setTimerValues}
-        timerValues={timerValues}
         defaultWorkCycles={defaultworkCycles}
         setDefaultWorkCycles={setDefaultWorkCycles}
       />

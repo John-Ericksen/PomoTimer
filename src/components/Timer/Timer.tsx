@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import Settings from "../Settings";
+import "./Timer.scss";
 
 const INTERVAL_IN_MILISECONDS = 100;
 
@@ -174,16 +176,26 @@ export default function Timer(props: any) {
   //--------------------------
 
   return (
-    <div>
-      <button onClick={workTimer}>Work Timer</button>
-      <button onClick={shortBreak}>Short Break</button>
-      <button onClick={longBreak}>Long Break</button>
+    <div className="timer">
+      <div>
+        <button onClick={workTimer}>Work Timer</button>
+        <button onClick={shortBreak}>Short Break</button>
+        <button onClick={longBreak}>Long Break</button>
+      </div>
 
       <p>{`${minutesString}:${secondsString}`}</p>
-      <button onClick={toggleIsCountingDown}>
-        {isCountingDown ? "Pause Timer" : "Start Timer"}
-      </button>
-      <button onClick={nextMode}>Skip this timer</button>
+      <div>
+        <Settings
+          setTimerValues={props.setTimerValues}
+          timerValues={props.timerValues}
+          defaultWorkCycles={props.defaultworkCycles}
+          setDefaultWorkCycles={props.setDefaultWorkCycles}
+        />
+        <button onClick={toggleIsCountingDown}>
+          {isCountingDown ? "Pause" : "Start"}
+        </button>
+        <button onClick={nextMode}>Skip</button>
+      </div>
     </div>
   );
 }
