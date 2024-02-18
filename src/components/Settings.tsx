@@ -22,6 +22,7 @@ export default function Settings(props: any) {
     var workMinutesInput: HTMLInputElement;
     var shortBreakMinutesInput: HTMLInputElement;
     var longBreakMinutesInput: HTMLInputElement;
+    var workCycles: HTMLInputElement;
 
     if (document.getElementById("work-minutes-input") as HTMLInputElement) {
       workMinutesInput = document.getElementById(
@@ -47,6 +48,13 @@ export default function Settings(props: any) {
       ) as HTMLInputElement;
       setLongBreakMinutes(longBreakMinutesInput.value);
     }
+
+    if (document.getElementById("break-count-input") as HTMLInputElement) {
+      workCycles = document.getElementById(
+        "break-count-input"
+      ) as HTMLInputElement;
+      props.setDefaultWorkCycles(workCycles.value);
+    }
   };
 
   useEffect(() => {
@@ -65,20 +73,29 @@ export default function Settings(props: any) {
       </button>
       {showForm && (
         <form action="">
-          <input type="number"
+          <input
+            type="number"
             onChange={updateTimerValues}
             value={workMinutes}
             id="work-minutes-input"
           ></input>
-          <input type="number"
+          <input
+            type="number"
             onChange={updateTimerValues}
             value={shortBreakMinutes}
             id="short-break-minutes-input"
           ></input>
-          <input type="number"
+          <input
+            type="number"
             onChange={updateTimerValues}
             value={longBreakMinutes}
             id="long-break-minutes-input"
+          ></input>
+          <input
+            type="number"
+            onChange={updateTimerValues}
+            value={props.defaultWorkCycles}
+            id="break-count-input"
           ></input>
         </form>
       )}

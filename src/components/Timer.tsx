@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
-import Settings from "./Settings";
 
-const INTERVAL_IN_MILISECONDS = 1;
+const INTERVAL_IN_MILISECONDS = 100;
 
 export default function Timer(props: any) {
   const [currentMode, setCurrentMode] = useState("work");
@@ -11,6 +10,11 @@ export default function Timer(props: any) {
     props.timerValues[1],
     props.timerValues[2],
   ];
+
+  const [cyclesCount, setCyclesCount] = useState(props.defaultWorkCycles);
+  useEffect(()=>{
+    setCyclesCount(props.defaultWorkCycles);
+  }, [props.defaultWorkCycles]);
 
   const [time, setTime] = useState(timerValues[0]);
   const [referenceTime, setReferenceTime] = useState(Date.now());
@@ -137,7 +141,14 @@ export default function Timer(props: any) {
       if (time <= 500) {
         switch (currentMode) {
           case "work":
-            setCurrentMode("short-break");
+            if (cyclesCount > 0) {
+              setCyclesCount((prevCyclesCount: any) => prevCyclesCount - 1);
+              setCurrentMode("short-break");
+            } 
+            else {
+              setCurrentMode("long-break");
+              setCyclesCount(props.defaultWorkCycles);
+            }
             toggleIsCountingDown();
             break;
           case "short-break":
