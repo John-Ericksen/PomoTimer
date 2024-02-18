@@ -25,17 +25,12 @@ export default function Timer(props: any) {
     setReferenceTime(Date.now());
   }
 
-  /* parses the time in seconds from the time in milleseconds,
- converts it to a string and adds a leading zero if neccessary. */
   const [secondsString, setSecondsString] = useState(
     Math.floor((time / 1000) % 60) < 10
       ? `0${Math.floor((time / 1000) % 60)}`
       : `${Math.floor((time / 1000) % 60)}`
   );
 
-  /* parses the time in milliseconds into minutes, converts to a 
-  string, and adds a leading 0 if the minutes remaining is less than 
-  10 (for styling). */
   const [minutesString, setMinutesString] = useState(
     Math.floor((time / 1000 / 60) % 60) < 10
       ? `0${Math.floor((time / 1000 / 60) % 60)}`
@@ -49,7 +44,6 @@ export default function Timer(props: any) {
         : `${Math.floor((time / 1000) % 60)}`
     );
 
-    //uses the same logic as the declaration of the variable to parse minutes.
     setMinutesString(
       Math.floor(time / 60000) < 10
         ? `0${Math.floor(time / 60000)}`
@@ -97,7 +91,7 @@ export default function Timer(props: any) {
     setCurrentMode("long-break");
   }
 
-  //for settings updates to work timer, and when long/short break is over
+  //changes the appropriate values when currentMode is switched to work
   useEffect(() => {
     if (currentMode === "work") {
       setTimerTextToDefault(0);
@@ -106,7 +100,7 @@ export default function Timer(props: any) {
     }
   }, [props.timerValues[0], currentMode]);
 
-  //for settings updates to short break timer and when work is over
+  //changes the appropriate values when currentMode is switched to short-break
   useEffect(() => {
     if (currentMode === "short-break") {
       setTimerTextToDefault(1);
@@ -115,7 +109,7 @@ export default function Timer(props: any) {
     }
   }, [props.timerValues[1], currentMode]);
 
-  //for settings updates to long break timer and when work is over
+  //changes the appropriate values when currentMode is switched to long-break
   useEffect(() => {
     if (currentMode === "long-break") {
       setTimerTextToDefault(2);
@@ -124,6 +118,7 @@ export default function Timer(props: any) {
     }
   }, [props.timerValues[2], currentMode]);
 
+  //skips the current timer, advancing to the next
   function nextMode() {
     switch (currentMode) {
       case "work":
@@ -134,25 +129,26 @@ export default function Timer(props: any) {
           setCurrentMode("long-break");
           setCyclesCount(props.defaultWorkCycles);
         }
-        if(isCountingDown===true) {
+        if (isCountingDown === true) {
           toggleIsCountingDown();
         }
         break;
       case "short-break":
         setCurrentMode("work");
-        if(isCountingDown===true) {
+        if (isCountingDown === true) {
           toggleIsCountingDown();
         }
         break;
       case "long-break":
         setCurrentMode("work");
-        if(isCountingDown===true) {
+        if (isCountingDown === true) {
           toggleIsCountingDown();
         }
         break;
     }
   }
 
+  //count down current timer untill zero
   useEffect(() => {
     if (isCountingDown) {
       function countDownUntilZero() {
