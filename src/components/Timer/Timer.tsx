@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import Settings from "../Settings";
+import Settings from "../Settings/Settings";
 import "./Timer.scss";
 
 const INTERVAL_IN_MILISECONDS = 100;
@@ -188,7 +188,7 @@ export default function Timer(props: any) {
         <Settings
           setTimerValues={props.setTimerValues}
           timerValues={props.timerValues}
-          defaultWorkCycles={props.defaultworkCycles}
+          defaultWorkCycles={props.defaultWorkCycles}
           setDefaultWorkCycles={props.setDefaultWorkCycles}
         />
         <button onClick={toggleIsCountingDown}>
