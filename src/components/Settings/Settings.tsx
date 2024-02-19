@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Settings.scss"
 export default function Settings(props: any) {
   const [showForm, setShowForm] = useState(false);
 
@@ -68,9 +69,7 @@ export default function Settings(props: any) {
 
   return (
     <>
-      <button className="settings" onClick={changeShowForm}>
-        Settings
-      </button>
+      <button className="settings" onClick={changeShowForm}/>
       {showForm && (
         <form action="">
           <input

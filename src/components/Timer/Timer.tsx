@@ -184,7 +184,7 @@ export default function Timer(props: any) {
       </div>
 
       <p>{`${minutesString}:${secondsString}`}</p>
-      <div>
+      <div className="bottom-row">
         <Settings
           setTimerValues={props.setTimerValues}
           timerValues={props.timerValues}
@@ -194,7 +194,7 @@ export default function Timer(props: any) {
         <button onClick={toggleIsCountingDown}>
           {isCountingDown ? "Pause" : "Start"}
         </button>
-        <button onClick={nextMode}>Skip</button>
+        <button onClick={nextMode} className="skip"></button>
       </div>
     </div>
   );
