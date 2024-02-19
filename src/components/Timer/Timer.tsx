@@ -18,6 +18,8 @@ export default function Timer(props: any) {
     setCyclesCount(props.defaultWorkCycles);
   }, [props.defaultWorkCycles]);
 
+  const [totalCycles, setTotalCycles] = useState(1);
+
   const [time, setTime] = useState(timerValues[0]);
   const [referenceTime, setReferenceTime] = useState(Date.now());
   const [isCountingDown, setIsCountingDown] = useState(false);
@@ -136,16 +138,12 @@ export default function Timer(props: any) {
         }
         break;
       case "short-break":
-        setCurrentMode("work");
-        if (isCountingDown === true) {
-          toggleIsCountingDown();
-        }
-        break;
       case "long-break":
         setCurrentMode("work");
         if (isCountingDown === true) {
           toggleIsCountingDown();
         }
+        setTotalCycles((prevTotalCycles) => prevTotalCycles + 1);
         break;
     }
   }
@@ -177,6 +175,9 @@ export default function Timer(props: any) {
 
   return (
     <div className="timer">
+      <div className="cycles">
+        <p className="cycles-count">{`#${totalCycles}`}</p>
+      </div>
       <div>
         <button onClick={workTimer}>Work Timer</button>
         <button onClick={shortBreak}>Short Break</button>

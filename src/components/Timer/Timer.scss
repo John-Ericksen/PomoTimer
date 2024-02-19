@@ -41,5 +41,16 @@ p {
     min-width: 80px;
     width: auto;
     height: 10vh;
-    
+}
+
+.cycles {
+    display: flex;
+    justify-content: end;
+    align-items: start;
+    padding-bottom: 3vh;
+}
+
+.cycles-count {
+    font-size: 1.2em;
+    color: rgba(153, 153, 153, 1);
 }
