@@ -1,31 +1,54 @@
-.settings {
-    background-color: transparent;
-    background-image: url("../../assets/settings.svg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 9.5vh;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-    min-width: 80px;
-    width: auto;
-    height: 10vh;
-    transition: none;
-
+.settings-button {
+  background-color: transparent;
+  background-image: url("../../assets/settings.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 9.5vh;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  min-width: 7vw;
+  width: 7vw;
+  height: 10vh;
+  transition: none;
 }
 
-.settings:hover {
-    color: transparent;
-    border: none;
-    outline: none;
-    background-color: transparent;
-
+.settings-button:hover {
+  color: transparent;
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
 
-.settings:active {
-    outline: none;
+.settings-button:active {
+  outline: none;
 }
 
+.settings-form {
+  position: absolute;
+  top: 20%;
+  left: center;
+  background-color: rgb(36, 4, 10);
+  border-radius: 10px;
+  text-align: left;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 66vw;
+  max-width: 800px;
+  height: 60vh;
+  justify-content: space-between;
+}
 
-
-
+.settings-form > input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 2px;
+  border: 1px solid white;
+}
+.settings-form > label {
+  font-size: large;
+  width: 100%;
+}

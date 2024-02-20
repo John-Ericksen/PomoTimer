@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./Settings.scss"
+import "./Settings.scss";
 export default function Settings(props: any) {
   const [showForm, setShowForm] = useState(false);
 
@@ -69,27 +69,32 @@ export default function Settings(props: any) {
 
   return (
     <>
-      <button className="settings" onClick={changeShowForm}/>
+      <button className="settings-button" onClick={changeShowForm} />
       {showForm && (
-        <form action="">
+        <form className="settings-form" action="">
+          <button onClick={changeShowForm}>Close Settings </button>
+          <label htmlFor="work-minutes-input">Work Timer</label>
           <input
             type="number"
             onChange={updateTimerValues}
             value={workMinutes}
             id="work-minutes-input"
           ></input>
+          <label htmlFor="short-break-minutes-input">Short Break</label>
           <input
             type="number"
             onChange={updateTimerValues}
             value={shortBreakMinutes}
             id="short-break-minutes-input"
           ></input>
+          <label htmlFor="long-break-minutes-input">Long Break</label>
           <input
             type="number"
             onChange={updateTimerValues}
             value={longBreakMinutes}
             id="long-break-minutes-input"
           ></input>
+          <label htmlFor="break-count-input">Work Cycles</label>
           <input
             type="number"
             onChange={updateTimerValues}

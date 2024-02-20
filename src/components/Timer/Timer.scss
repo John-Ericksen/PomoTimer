@@ -37,10 +37,23 @@ p {
 	padding: 0;
 	font: inherit;
 	cursor: pointer;
-	outline: inherit;
-    min-width: 80px;
-    width: auto;
+    min-width: 7vw;
+    width: 7vw;
     height: 10vh;
+    transition: none;
+}
+
+
+.skip:hover {
+    color: transparent;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+}
+
+.skip:active {
+    outline: none;
 }
 
 .cycles {
@@ -53,4 +66,7 @@ p {
 .cycles-count {
     font-size: 1.2em;
     color: rgba(153, 153, 153, 1);
+    margin-top: -4vh;
 }
+
+
