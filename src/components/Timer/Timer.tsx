@@ -178,13 +178,14 @@ export default function Timer(props: any) {
       <div className="cycles">
         <p className="cycles-count">{`#${totalCycles}`}</p>
       </div>
-      <div>
+      <div className="top-row">
         <button onClick={workTimer}>Work Timer</button>
         <button onClick={shortBreak}>Short Break</button>
         <button onClick={longBreak}>Long Break</button>
       </div>
 
       <p>{`${minutesString}:${secondsString}`}</p>
+      
       <div className="bottom-row">
         <Settings
           setTimerValues={props.setTimerValues}
@@ -192,7 +193,7 @@ export default function Timer(props: any) {
           defaultWorkCycles={props.defaultWorkCycles}
           setDefaultWorkCycles={props.setDefaultWorkCycles}
         />
-        <button onClick={toggleIsCountingDown}>
+        <button className="toggle-timer-button" onClick={toggleIsCountingDown}>
           {isCountingDown ? "Pause" : "Start"}
         </button>
         <button onClick={nextMode} className="skip"></button>
