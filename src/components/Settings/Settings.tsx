@@ -72,7 +72,7 @@ export default function Settings(props: any) {
       <button className="settings-button" onClick={changeShowForm} />
       {showForm && (
         <form className="settings-form" action="">
-          <button onClick={changeShowForm}>Close Settings </button>
+          <button className="close-settings" onClick={changeShowForm}></button>
           <label htmlFor="work-minutes-input">Work Timer</label>
           <input
             type="number"
