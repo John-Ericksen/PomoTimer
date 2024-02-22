@@ -72,35 +72,45 @@ export default function Settings(props: any) {
       <button className="settings-button" onClick={changeShowForm} />
       {showForm && (
         <form className="settings-form" action="">
-          <button className="close-settings" onClick={changeShowForm}></button>
-          <label htmlFor="work-minutes-input">Work Timer</label>
-          <input
-            type="number"
-            onChange={updateTimerValues}
-            value={workMinutes}
-            id="work-minutes-input"
-          ></input>
-          <label htmlFor="short-break-minutes-input">Short Break</label>
-          <input
-            type="number"
-            onChange={updateTimerValues}
-            value={shortBreakMinutes}
-            id="short-break-minutes-input"
-          ></input>
-          <label htmlFor="long-break-minutes-input">Long Break</label>
-          <input
-            type="number"
-            onChange={updateTimerValues}
-            value={longBreakMinutes}
-            id="long-break-minutes-input"
-          ></input>
-          <label htmlFor="break-count-input">Work Cycles</label>
-          <input
-            type="number"
-            onChange={updateTimerValues}
-            value={props.defaultWorkCycles}
-            id="break-count-input"
-          ></input>
+          <div className="timers">
+            <div className="input-box">
+              <label htmlFor="work-minutes-input">Work Timer</label>
+              <input
+                type="number"
+                onChange={updateTimerValues}
+                value={workMinutes}
+                id="work-minutes-input"
+              ></input>
+            </div>
+
+            <div className="input-box">
+              <label htmlFor="short-break-minutes-input">Short Break</label>
+              <input
+                type="number"
+                onChange={updateTimerValues}
+                value={shortBreakMinutes}
+                id="short-break-minutes-input"
+              ></input>
+            </div>
+            <div className="input-box">
+              <label htmlFor="long-break-minutes-input">Long Break</label>
+              <input
+                type="number"
+                onChange={updateTimerValues}
+                value={longBreakMinutes}
+                id="long-break-minutes-input"
+              ></input>
+            </div>
+            <div className="input-box">
+            <label htmlFor="break-count-input">Work Cycles</label>
+            <input
+              type="number"
+              onChange={updateTimerValues}
+              value={props.defaultWorkCycles}
+              id="break-count-input"
+            ></input>
+          </div>
+          </div>
         </form>
       )}
     </>

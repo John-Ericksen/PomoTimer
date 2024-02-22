@@ -1,12 +1,26 @@
-.content {
+.content-work {
   background-color: rgba(117, 14, 33, 0.2);
-  padding-top: 4em;
-  padding-bottom: 2em;
-  padding-left: 4em;
-  padding-right: 4em;
+  padding-top: 8vh;
+  padding-bottom: 8vh;
+  padding-left: 10vh;
+  padding-right: 10vh;
   border-radius: 20px;
   max-width: 700px;
-  height: 40vh;
+  height: fit-content;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+}
+
+.content-break {
+  background-color: rgba(22, 21, 85, 0.2);
+  padding-top: 8vh;
+  padding-bottom: 8vh;
+  padding-left: 10vh;
+  padding-right: 10vh;
+  border-radius: 20px;
+  max-width: 700px;
+  height: fit-content;
   min-height: 300px;
   display: flex;
   align-items: center;

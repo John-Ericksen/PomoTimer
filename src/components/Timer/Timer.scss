@@ -1,5 +1,4 @@
 button {
-  background-color: rgba(135, 35, 65, 0.6);
   margin: 10px;
   border-radius: 15px;
   width: 25vw;
@@ -8,12 +7,20 @@ button {
   height: auto;
 }
 
+.button-work {
+  background-color: rgba(135, 35, 65, 0.6);
+}
+
+.button-break {
+  background-color: rgba(35, 129, 135, 0.6);
+}
+
 .toggle-timer-button {
-    background-color: rgba(153, 153, 153, 1);
-    border-radius: 5px;
-    color: black;
-    font-weight: bold;
-    font-size: 2em;
+  background-color: rgba(153, 153, 153, 1);
+  border-radius: 5px;
+  color: black;
+  font-weight: bold;
+  font-size: 2em;
 }
 
 p {
@@ -76,12 +83,10 @@ p {
   display: flex;
   justify-content: end;
   align-items: start;
-  padding-bottom: 3vh;
   flex-shrink: 0;
 }
 
 .cycles-count {
   font-size: 1.2em;
   color: rgba(153, 153, 153, 1);
-
 }

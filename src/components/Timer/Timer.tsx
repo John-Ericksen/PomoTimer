@@ -6,7 +6,6 @@ import "./Timer.scss";
 const INTERVAL_IN_MILISECONDS = 100;
 
 export default function Timer(props: any) {
-  const [currentMode, setCurrentMode] = useState("work");
   const timerValues = [
     props.timerValues[0],
     props.timerValues[1],
@@ -76,7 +75,7 @@ export default function Timer(props: any) {
     setTime(props.timerValues[0]);
     setReferenceTime(Date.now());
     setTimerTextToDefault(0);
-    setCurrentMode("work");
+    props.setCurrentMode("work");
   }
 
   function shortBreak() {
@@ -84,7 +83,7 @@ export default function Timer(props: any) {
     setTime(props.timerValues[1]);
     setReferenceTime(Date.now());
     setTimerTextToDefault(1);
-    setCurrentMode("short-break");
+    props.setCurrentMode("short-break");
   }
 
   function longBreak() {
@@ -92,45 +91,45 @@ export default function Timer(props: any) {
     setTime(props.timerValues[2]);
     setReferenceTime(Date.now());
     setTimerTextToDefault(2);
-    setCurrentMode("long-break");
+    props.setCurrentMode("long-break");
   }
 
   //changes the appropriate values when currentMode is switched to work
   useEffect(() => {
-    if (currentMode === "work") {
+    if (props.currentMode === "work") {
       setTimerTextToDefault(0);
       setTime(props.timerValues[0]);
       setReferenceTime(Date.now());
     }
-  }, [props.timerValues[0], currentMode]);
+  }, [props.timerValues[0], props.currentMode]);
 
   //changes the appropriate values when currentMode is switched to short-break
   useEffect(() => {
-    if (currentMode === "short-break") {
+    if (props.currentMode === "short-break") {
       setTimerTextToDefault(1);
       setTime(props.timerValues[1]);
       setReferenceTime(Date.now());
     }
-  }, [props.timerValues[1], currentMode]);
+  }, [props.timerValues[1], props.currentMode]);
 
   //changes the appropriate values when currentMode is switched to long-break
   useEffect(() => {
-    if (currentMode === "long-break") {
+    if (props.currentMode === "long-break") {
       setTimerTextToDefault(2);
       setTime(props.timerValues[2]);
       setReferenceTime(Date.now());
     }
-  }, [props.timerValues[2], currentMode]);
+  }, [props.timerValues[2], props.currentMode]);
 
   //skips the current timer, advancing to the next
   function nextMode() {
-    switch (currentMode) {
+    switch (props.currentMode) {
       case "work":
         if (cyclesCount > 0) {
           setCyclesCount((prevCyclesCount: any) => prevCyclesCount - 1);
-          setCurrentMode("short-break");
+          props.setCurrentMode("short-break");
         } else {
-          setCurrentMode("long-break");
+          props.setCurrentMode("long-break");
           setCyclesCount(props.defaultWorkCycles);
         }
         if (isCountingDown === true) {
@@ -139,7 +138,7 @@ export default function Timer(props: any) {
         break;
       case "short-break":
       case "long-break":
-        setCurrentMode("work");
+        props.setCurrentMode("work");
         if (isCountingDown === true) {
           toggleIsCountingDown();
         }
@@ -179,9 +178,9 @@ export default function Timer(props: any) {
         <p className="cycles-count">{`#${totalCycles}`}</p>
       </div>
       <div className="top-row">
-        <button onClick={workTimer}>Work Timer</button>
-        <button onClick={shortBreak}>Short Break</button>
-        <button onClick={longBreak}>Long Break</button>
+        <button className={props.currentMode === "work" ? "button-work" : "button-break"} onClick={workTimer}>Work Timer</button>
+        <button className={props.currentMode === "work" ? "button-work" : "button-break"}  onClick={shortBreak}>Short Break</button>
+        <button className={props.currentMode === "work" ? "button-work" : "button-break"}  onClick={longBreak}>Long Break</button>
       </div>
 
       <p>{`${minutesString}:${secondsString}`}</p>

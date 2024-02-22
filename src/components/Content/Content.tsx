@@ -9,14 +9,18 @@ export default function Content() {
     900 * 1000,
   ]);
   const [defaultworkCycles, setDefaultWorkCycles] = useState(3); //the amount of work -> short break cycles before a long break is given
+  const [currentMode, setCurrentMode] = useState("work");
+
 
   return (
-    <div className="content">
+    <div className={currentMode === "work" ? "content-work" : "content-break"}>
       <Timer
         timerValues={timerValues}
         setTimerValues={setTimerValues}
         defaultWorkCycles={defaultworkCycles}
         setDefaultWorkCycles={setDefaultWorkCycles}
+        currentMode={currentMode}
+        setCurrentMode={setCurrentMode}
       />
     </div>
   );
