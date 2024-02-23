@@ -45,37 +45,3 @@ label {
   font-family: "Alata", sans-serif;
   padding-right: 2vw;
 }
-
-
-.close-settings {
-    background-color: transparent;
-    background-image: url("../../assets/close.svg");
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size:cover;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    display: flex;
-    width: 3vw;
-    height: 3vh;
-    transition: none;
-    align-self: flex-end;
-  }
-  
-  .close-settings:hover {
-    color: transparent;
-    border: none;
-    outline: none;
-    background-color: transparent;
-  }
-  
-  .close-settings:active {
-    outline: none;
-  }
-
-  .input-box {
-    padding-left: 2vw;
-  }
-
-  

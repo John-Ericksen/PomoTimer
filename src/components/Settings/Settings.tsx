@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import "./Settings.scss";
-export default function Settings(props: any) {
-  const [showForm, setShowForm] = useState(false);
 
+export default function Settings(props: any) {
+
+  const [showForm, setShowForm] = useState(false);
   function changeShowForm() {
     setShowForm((prevShowForm) => !prevShowForm);
   }
