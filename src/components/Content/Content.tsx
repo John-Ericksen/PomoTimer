@@ -6,10 +6,10 @@ export default function Content() {
   function getCookie(cname: string) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
+    let ca = decodedCookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
       let c = ca[i];
-      while (c.charAt(0) == ' ') {
+      while (c.charAt(0) == " ") {
         c = c.substring(1);
       }
       if (c.indexOf(name) == 0) {
@@ -25,11 +25,8 @@ export default function Content() {
     parseFloat(getCookie("LongBreak")) || 900 * 1000,
   ]);
 
-  
-
   const [defaultworkCycles, setDefaultWorkCycles] = useState(3); //the amount of work -> short break cycles before a long break is given
   const [currentMode, setCurrentMode] = useState("work");
-
 
   return (
     <div className={currentMode === "work" ? "content-work" : "content-break"}>
