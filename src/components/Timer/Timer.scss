@@ -15,14 +15,40 @@ button {
   background-color: rgba(35, 129, 135, 0.6);
 }
 
-.toggle-timer-button {
-  background-color: rgba(153, 153, 153, 1);
-  border-radius: 5px;
-  color: black;
-  font-weight: bold;
-  font-size: 2em;
-  transition: border-color 0.25s;
+.pause-button {
+  background-color: transparent;
+  background-image: url("../../assets/img/pause.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 8vh;
+  padding: 0;
+  font: inherit;
+  font-size: 0em;
+  cursor: pointer;
+  min-width: 7vw;
+  width: 7vw;
+  height: 10vh;
+  transition: none;
+  min-width: 80px;
+  border-radius: 15px;
+}
 
+.play-button {
+  background-color: transparent;
+  background-image: url("../../assets/img/play.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 8vh;
+  padding: 0;
+  font: inherit;
+  font-size: 0em;
+  cursor: pointer;
+  min-width: 7vw;
+  width: 7vw;
+  height: 10vh;
+  transition: none;
+  min-width: 80px;
+  border-radius: 15px;
 }
 
 p {
@@ -56,7 +82,7 @@ p {
 
 .skip {
   background-color: transparent;
-  background-image: url("../../assets/skip.svg");
+  background-image: url("../../assets/img/skip.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 8vh;
@@ -69,7 +95,6 @@ p {
   transition: none;
   min-width: 80px;
 }
-
 
 .cycles {
   display: flex;
@@ -104,26 +129,6 @@ p {
     height: auto;
   }
 
-  .toggle-timer-button {
-    background-color: transparent;
-    background-image: url("../../assets/play.svg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 8vh;
-    padding: 0;
-    font: inherit;
-    font-size: 0em;
-    cursor: pointer;
-    min-width: 7vw;
-    width: 7vw;
-    height: 10vh;
-    transition: none;
-    min-width: 80px;
-    border-radius: 15px;
-  }
-
-  
-  
   p {
     font-size: 7em;
     font-weight: bold;

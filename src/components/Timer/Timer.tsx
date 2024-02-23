@@ -2,8 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Settings from "../Settings/Settings";
 import "./Timer.scss";
-import alarm from '../../assets/alarm.mp3'
-
+import alarm from "../../assets/alarm.mp3";
 
 export default function Timer(props: any) {
   const INTERVAL_IN_MILISECONDS = 100;
@@ -25,8 +24,6 @@ export default function Timer(props: any) {
   useEffect(() => {
     setCyclesCount(props.defaultWorkCycles);
   }, [props.defaultWorkCycles]);
-
-  const [totalCycles, setTotalCycles] = useState(1);
 
   const [time, setTime] = useState(props.timerValues[0]);
   const [referenceTime, setReferenceTime] = useState(Date.now());
@@ -135,10 +132,10 @@ export default function Timer(props: any) {
         if (cyclesCount > 0) {
           setCyclesCount((prevCyclesCount: any) => prevCyclesCount - 1);
           props.setCurrentMode("short-break");
-           new Notification("Hi there!");
+          new Notification("Time's up! Take a short break!");
         } else {
           props.setCurrentMode("long-break");
-          new Notification("Hi there!");
+          new Notification("Time's up! Take a long break!");
           setCyclesCount(props.defaultWorkCycles);
         }
         if (isCountingDown === true) {
@@ -151,8 +148,7 @@ export default function Timer(props: any) {
         if (isCountingDown === true) {
           toggleIsCountingDown();
         }
-        setTotalCycles((prevTotalCycles) => prevTotalCycles + 1);
-        new Notification("Hi there!");
+        new Notification("Time's up! Back to work!");
         break;
     }
     alarmSound.play();
@@ -185,9 +181,6 @@ export default function Timer(props: any) {
 
   return (
     <div className="timer">
-      <div className="cycles">
-        <p className="cycles-count">{`#${totalCycles}`}</p>
-      </div>
       <div className="top-row">
         <button
           className={
@@ -224,7 +217,12 @@ export default function Timer(props: any) {
           defaultWorkCycles={props.defaultWorkCycles}
           setDefaultWorkCycles={props.setDefaultWorkCycles}
         />
-        <button className="toggle-timer-button" onClick={toggleIsCountingDown}>
+        <button
+          className={
+            isCountingDown ? "pause-button" : "play-button"
+          }
+          onClick={toggleIsCountingDown}
+        >
           {isCountingDown ? "Pause" : "Start"}
         </button>
         <button onClick={nextMode} className="skip"></button>
