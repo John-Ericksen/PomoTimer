@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./Settings.scss";
 
 export default function Settings(props: any) {
-
   const [showForm, setShowForm] = useState(false);
   function changeShowForm() {
     setShowForm((prevShowForm) => !prevShowForm);
@@ -120,6 +119,10 @@ export default function Settings(props: any) {
               ></input>
             </div>
           </div>
+          <h5>
+            If notifications are not showing up on your device, make sure you
+            enable browser notifications in your operating system settings!
+          </h5>
         </form>
       )}
     </>

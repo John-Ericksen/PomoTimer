@@ -2,9 +2,24 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Settings from "../Settings/Settings";
 import "./Timer.scss";
+import alarm from '../../assets/alarm.mp3'
+
 
 export default function Timer(props: any) {
   const INTERVAL_IN_MILISECONDS = 100;
+  const alarmSound = new Audio(alarm);
+
+  if (!window.Notification) {
+    alert("Browser does not support notifications.");
+  }
+
+  if (Notification.permission !== "granted") {
+    Notification.requestPermission();
+  }
+
+  if (Notification.permission === "denied") {
+    alert("Timer will not function optimally without notificaiton");
+  }
 
   const [cyclesCount, setCyclesCount] = useState(props.defaultWorkCycles);
   useEffect(() => {
@@ -120,8 +135,10 @@ export default function Timer(props: any) {
         if (cyclesCount > 0) {
           setCyclesCount((prevCyclesCount: any) => prevCyclesCount - 1);
           props.setCurrentMode("short-break");
+           new Notification("Hi there!");
         } else {
           props.setCurrentMode("long-break");
+          new Notification("Hi there!");
           setCyclesCount(props.defaultWorkCycles);
         }
         if (isCountingDown === true) {
@@ -135,8 +152,10 @@ export default function Timer(props: any) {
           toggleIsCountingDown();
         }
         setTotalCycles((prevTotalCycles) => prevTotalCycles + 1);
+        new Notification("Hi there!");
         break;
     }
+    alarmSound.play();
   }
 
   //count down current timer untill zero
