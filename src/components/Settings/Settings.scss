@@ -2,7 +2,7 @@
   background-color: transparent;
   background-image: url("../../assets/settings.svg");
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center 0%;
   background-size: 9.5vh;
   padding: 0;
   font: inherit;
@@ -11,17 +11,6 @@
   width: 7vw;
   height: 10vh;
   transition: none;
-}
-
-.settings-button:hover {
-  color: transparent;
-  border: none;
-  outline: none;
-  background-color: transparent;
-}
-
-.settings-button:active {
-  outline: none;
 }
 
 .settings-form {
@@ -48,4 +37,28 @@ label {
 
 p {
   font-size: small;
+}
+
+@media only screen and (max-width: 700px) {
+  .settings-form {
+    border-radius: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 100%;    
+    position: absolute;
+    top: 80%;
+    left: 30%;
+  }
+
+  input {
+    
+    width: 18vw;
+    font-size: medium;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 2px;
+    border: 1px solid white;
+  }
 }
