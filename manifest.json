@@ -1,17 +1,17 @@
 {
-    "lang": "en-us",
-    "name": "Pomodoro Timer",
-    "short_name": "PomoTimer",
-    "description": "An app that runs timers based on the pomodoro technique",
-    "start_url": "/",
-    "orientation": "any",
-    "theme_color": "#1E1E1E",
+  "lang": "en-us",
+  "name": "Pomodoro Timer",
+  "short_name": "PomoTimer",
+  "description": "An app that runs timers based on the pomodoro technique",
+  "start_url": "/",
+  "orientation": "any",
+  "theme_color": "#1E1E1E",
 
-    "display": "standalone",
-    "icons": [
-        {
-            "src": "/tomato.png",
-            "sizes": "512x512"
-        }
-    ]
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/tomato.png",
+      "sizes": "512x512"
+    }
+  ]
 }
