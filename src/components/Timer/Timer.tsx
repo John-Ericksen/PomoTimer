@@ -3,14 +3,8 @@ import { useState } from "react";
 import Settings from "../Settings/Settings";
 import "./Timer.scss";
 
-const INTERVAL_IN_MILISECONDS = 100;
-
 export default function Timer(props: any) {
-  const timerValues = [
-    props.timerValues[0],
-    props.timerValues[1],
-    props.timerValues[2],
-  ];
+  const INTERVAL_IN_MILISECONDS = 100;
 
   const [cyclesCount, setCyclesCount] = useState(props.defaultWorkCycles);
   useEffect(() => {
@@ -19,7 +13,7 @@ export default function Timer(props: any) {
 
   const [totalCycles, setTotalCycles] = useState(1);
 
-  const [time, setTime] = useState(timerValues[0]);
+  const [time, setTime] = useState(props.timerValues[0]);
   const [referenceTime, setReferenceTime] = useState(Date.now());
   const [isCountingDown, setIsCountingDown] = useState(false);
 
@@ -94,7 +88,7 @@ export default function Timer(props: any) {
     props.setCurrentMode("long-break");
   }
 
-  //changes the appropriate values when currentMode is switched to work
+  //changes the appropriate values when currentMode is switched
   useEffect(() => {
     if (props.currentMode === "work") {
       setTimerTextToDefault(0);
@@ -103,7 +97,6 @@ export default function Timer(props: any) {
     }
   }, [props.timerValues[0], props.currentMode]);
 
-  //changes the appropriate values when currentMode is switched to short-break
   useEffect(() => {
     if (props.currentMode === "short-break") {
       setTimerTextToDefault(1);
@@ -112,7 +105,6 @@ export default function Timer(props: any) {
     }
   }, [props.timerValues[1], props.currentMode]);
 
-  //changes the appropriate values when currentMode is switched to long-break
   useEffect(() => {
     if (props.currentMode === "long-break") {
       setTimerTextToDefault(2);
@@ -178,13 +170,34 @@ export default function Timer(props: any) {
         <p className="cycles-count">{`#${totalCycles}`}</p>
       </div>
       <div className="top-row">
-        <button className={props.currentMode === "work" ? "button-work" : "button-break"} onClick={workTimer}>Work Timer</button>
-        <button className={props.currentMode === "work" ? "button-work" : "button-break"}  onClick={shortBreak}>Short Break</button>
-        <button className={props.currentMode === "work" ? "button-work" : "button-break"}  onClick={longBreak}>Long Break</button>
+        <button
+          className={
+            props.currentMode === "work" ? "button-work" : "button-break"
+          }
+          onClick={workTimer}
+        >
+          Work Timer
+        </button>
+        <button
+          className={
+            props.currentMode === "work" ? "button-work" : "button-break"
+          }
+          onClick={shortBreak}
+        >
+          Short Break
+        </button>
+        <button
+          className={
+            props.currentMode === "work" ? "button-work" : "button-break"
+          }
+          onClick={longBreak}
+        >
+          Long Break
+        </button>
       </div>
 
       <p>{`${minutesString}:${secondsString}`}</p>
-      
+
       <div className="bottom-row">
         <Settings
           setTimerValues={props.setTimerValues}
