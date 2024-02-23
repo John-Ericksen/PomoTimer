@@ -65,6 +65,11 @@ export default function Settings(props: any) {
       (parseFloat(shortBreakMinutes) || 0) * 1000 * 60,
       (parseFloat(longBreakMinutes) || 0) * 1000 * 60,
     ]); //needs a conversion to ms
+    document.cookie = "workTimer=" + (parseFloat(workMinutes) || 0) * 1000 * 60;
+    document.cookie =
+      "shortBreak=" + (parseFloat(shortBreakMinutes) || 0) * 1000 * 60;
+    document.cookie =
+      "longBreak=" + (parseFloat(longBreakMinutes) || 0) * 1000 * 60;
   }, [workMinutes, shortBreakMinutes, longBreakMinutes]);
 
   return (
@@ -72,6 +77,9 @@ export default function Settings(props: any) {
       <button className="settings-button" onClick={changeShowForm} />
       {showForm && (
         <form className="settings-form" action="">
+          <a href="https://todoist.com/productivity-methods/pomodoro-technique">
+            Learn the Pomodoro Technique!
+          </a>
           <div className="timers">
             <div className="input-box">
               <label htmlFor="work-minutes-input">Work Timer</label>
@@ -102,14 +110,14 @@ export default function Settings(props: any) {
               ></input>
             </div>
             <div className="input-box">
-            <label htmlFor="break-count-input">Work Cycles</label>
-            <input
-              type="number"
-              onChange={updateTimerValues}
-              value={props.defaultWorkCycles}
-              id="break-count-input"
-            ></input>
-          </div>
+              <label htmlFor="break-count-input">Work Cycles</label>
+              <input
+                type="number"
+                onChange={updateTimerValues}
+                value={props.defaultWorkCycles}
+                id="break-count-input"
+              ></input>
+            </div>
           </div>
         </form>
       )}
