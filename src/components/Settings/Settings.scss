@@ -1,8 +1,8 @@
 .settings-button {
   background-color: transparent;
-  background-image: url("../../assets/settings.svg");
+  background-image: url("../../assets/img/settings.svg");
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center 0%;
   background-size: 9.5vh;
   padding: 0;
   font: inherit;
@@ -13,72 +13,51 @@
   transition: none;
 }
 
-.settings-button:hover {
-  color: transparent;
-  border: none;
-  outline: none;
-  background-color: transparent;
-}
-
-.settings-button:active {
-  outline: none;
-}
-
 .settings-form {
-  position: absolute;
-  top: 20%;
-  left: center;
-  background-color: rgb(36, 4, 10);
   border-radius: 10px;
   text-align: left;
-  padding: 10px;
   display: flex;
   flex-direction: column;
-  width: 66vw;
-  max-width: 800px;
-  height: 60vh;
   justify-content: start;
 }
 
-.settings-form > input {
-  width: 10%;
-  padding: 12px 20px;
+input {
+  width: 6vw;
   font-size: large;
   margin: 8px 0;
   box-sizing: border-box;
   border-radius: 2px;
   border: 1px solid white;
 }
-.settings-form > label {
-  font-size: 1.5em;
+
+label {
   font-family: "Alata", sans-serif;
-  width: 100%;
-  padding: 0px;
+  padding-right: 2vw;
 }
 
+p {
+  font-size: small;
+}
 
-.close-settings {
-    background-color: transparent;
-    background-image: url("../../assets/close.svg");
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 2vh;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
+@media only screen and (max-width: 700px) {
+  .settings-form {
+    border-radius: 10px;
+    text-align: left;
     display: flex;
-    width: 1vw;
-    height: 2vh;
-    transition: none;
+    flex-direction: column;
+    justify-content: start;
+    width: 100%;
+    position: absolute;
+    top: 80%;
+    left: 30%;
   }
-  
-  .close-settings:hover {
-    color: transparent;
-    border: none;
-    outline: none;
-    background-color: transparent;
+
+  input {
+    width: 18vw;
+    font-size: medium;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 2px;
+    border: 1px solid white;
   }
-  
-  .close-settings:active {
-    outline: none;
-  }
+}

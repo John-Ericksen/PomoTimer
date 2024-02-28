@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./Settings.scss";
+
 export default function Settings(props: any) {
   const [showForm, setShowForm] = useState(false);
-
   function changeShowForm() {
     setShowForm((prevShowForm) => !prevShowForm);
   }
@@ -65,6 +65,11 @@ export default function Settings(props: any) {
       (parseFloat(shortBreakMinutes) || 0) * 1000 * 60,
       (parseFloat(longBreakMinutes) || 0) * 1000 * 60,
     ]); //needs a conversion to ms
+    document.cookie = "workTimer=" + (parseFloat(workMinutes) || 0) * 1000 * 60;
+    document.cookie =
+      "shortBreak=" + (parseFloat(shortBreakMinutes) || 0) * 1000 * 60;
+    document.cookie =
+      "longBreak=" + (parseFloat(longBreakMinutes) || 0) * 1000 * 60;
   }, [workMinutes, shortBreakMinutes, longBreakMinutes]);
 
   return (
@@ -72,35 +77,52 @@ export default function Settings(props: any) {
       <button className="settings-button" onClick={changeShowForm} />
       {showForm && (
         <form className="settings-form" action="">
-          <button className="close-settings" onClick={changeShowForm}></button>
-          <label htmlFor="work-minutes-input">Work Timer</label>
-          <input
-            type="number"
-            onChange={updateTimerValues}
-            value={workMinutes}
-            id="work-minutes-input"
-          ></input>
-          <label htmlFor="short-break-minutes-input">Short Break</label>
-          <input
-            type="number"
-            onChange={updateTimerValues}
-            value={shortBreakMinutes}
-            id="short-break-minutes-input"
-          ></input>
-          <label htmlFor="long-break-minutes-input">Long Break</label>
-          <input
-            type="number"
-            onChange={updateTimerValues}
-            value={longBreakMinutes}
-            id="long-break-minutes-input"
-          ></input>
-          <label htmlFor="break-count-input">Work Cycles</label>
-          <input
-            type="number"
-            onChange={updateTimerValues}
-            value={props.defaultWorkCycles}
-            id="break-count-input"
-          ></input>
+          <a href="https://todoist.com/productivity-methods/pomodoro-technique">
+            Learn the Pomodoro Technique!
+          </a>
+          <div className="timers">
+            <div className="input-box">
+              <label htmlFor="work-minutes-input">Work Timer</label>
+              <input
+                type="number"
+                onChange={updateTimerValues}
+                value={workMinutes}
+                id="work-minutes-input"
+              ></input>
+            </div>
+
+            <div className="input-box">
+              <label htmlFor="short-break-minutes-input">Short Break</label>
+              <input
+                type="number"
+                onChange={updateTimerValues}
+                value={shortBreakMinutes}
+                id="short-break-minutes-input"
+              ></input>
+            </div>
+            <div className="input-box">
+              <label htmlFor="long-break-minutes-input">Long Break</label>
+              <input
+                type="number"
+                onChange={updateTimerValues}
+                value={longBreakMinutes}
+                id="long-break-minutes-input"
+              ></input>
+            </div>
+            <div className="input-box">
+              <label htmlFor="break-count-input">Work Cycles</label>
+              <input
+                type="number"
+                onChange={updateTimerValues}
+                value={props.defaultWorkCycles}
+                id="break-count-input"
+              ></input>
+            </div>
+          </div>
+          <h5>
+            If notifications are not showing up on your device, make sure you
+            enable browser notifications in your operating system settings!
+          </h5>
         </form>
       )}
     </>
