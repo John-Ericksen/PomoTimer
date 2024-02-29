@@ -3,6 +3,7 @@ import { useState } from "react";
 import Settings from "../Settings/Settings";
 import "./Timer.scss";
 import alarm from "../../assets/alarm.mp3";
+import { Button } from "@mui/joy";
 
 export default function Timer(props: any) {
   const INTERVAL_IN_MILISECONDS = 100;
@@ -182,30 +183,30 @@ export default function Timer(props: any) {
   return (
     <div className="timer">
       <div className="top-row">
-        <button
+        <Button
           className={
             props.currentMode === "work" ? "button-work" : "button-break"
           }
           onClick={workTimer}
         >
           Work Timer
-        </button>
-        <button
+        </Button>
+        <Button
           className={
             props.currentMode === "work" ? "button-work" : "button-break"
           }
           onClick={shortBreak}
         >
           Short Break
-        </button>
-        <button
+        </Button>
+        <Button
           className={
             props.currentMode === "work" ? "button-work" : "button-break"
           }
           onClick={longBreak}
         >
           Long Break
-        </button>
+        </Button>
       </div>
 
       <p>{`${minutesString}:${secondsString}`}</p>
@@ -217,15 +218,16 @@ export default function Timer(props: any) {
           defaultWorkCycles={props.defaultWorkCycles}
           setDefaultWorkCycles={props.setDefaultWorkCycles}
         />
-        <button
+        <Button
           className={
             isCountingDown ? "pause-button" : "play-button"
           }
           onClick={toggleIsCountingDown}
+          sx={{backgroundColor: "transparent"}}
         >
           {isCountingDown ? "Pause" : "Start"}
-        </button>
-        <button onClick={nextMode} className="skip"></button>
+        </Button>
+        <Button onClick={nextMode} sx={{backgroundColor: "transparent"}} className="skip"></Button>
       </div>
     </div>
   );

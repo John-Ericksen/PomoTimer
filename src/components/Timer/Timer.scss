@@ -20,14 +20,15 @@ button {
   background-image: url("../../assets/img/pause.svg");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 8vh;
+  background-size: 80px 80px;
   padding: 0;
   font: inherit;
-  font-size: 0em;
   cursor: pointer;
-  min-width: 7vw;
-  width: 7vw;
-  height: 10vh;
+  min-width: 8vh;
+  width: 80px;
+  height: 80px;
+  transition: none;
+  min-width: 80px;
   transition: none;
   min-width: 80px;
   border-radius: 15px;
@@ -38,14 +39,15 @@ button {
   background-image: url("../../assets/img/play.svg");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 8vh;
+  background-size: 80px 80px;
   padding: 0;
   font: inherit;
-  font-size: 0em;
   cursor: pointer;
-  min-width: 7vw;
-  width: 7vw;
-  height: 10vh;
+  min-width: 8vh;
+  width: 80px;
+  height: 80px;
+  transition: none;
+  min-width: 80px;
   transition: none;
   min-width: 80px;
   border-radius: 15px;
@@ -85,13 +87,13 @@ p {
   background-image: url("../../assets/img/skip.svg");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 8vh;
+  background-size: 800px 80px;
   padding: 0;
   font: inherit;
   cursor: pointer;
-  min-width: 7vw;
-  width: 7vw;
-  height: 10vh;
+  min-width: 8vh;
+  width: 80px;
+  height: 80px;
   transition: none;
   min-width: 80px;
 }
@@ -118,15 +120,6 @@ p {
 
   .cycles-count {
     font-size: 0em;
-  }
-
-  button {
-    margin: 10px;
-    border-radius: 15px;
-    width: 20vw;
-    max-width: 200px;
-    font-size: 0.8em;
-    height: auto;
   }
 
   p {

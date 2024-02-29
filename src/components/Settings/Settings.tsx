@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Settings.scss";
+import { Button } from "@mui/joy";
 
 export default function Settings(props: any) {
   const [showForm, setShowForm] = useState(false);
@@ -74,7 +75,9 @@ export default function Settings(props: any) {
 
   return (
     <>
-      <button className="settings-button" onClick={changeShowForm} />
+      <Button className="settings-button" onClick={changeShowForm} sx={{backgroundColor: "transparent",
+    backgroundSize: "90px 90px",
+    backgroundPosition: "center 1px"}} />
       {showForm && (
         <form className="settings-form" action="">
           <a href="https://todoist.com/productivity-methods/pomodoro-technique">
