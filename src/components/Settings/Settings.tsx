@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Settings.scss";
-import { Button } from "@mui/joy";
+import { Box, Button, Link, Stack, Typography } from "@mui/joy";
 
 export default function Settings(props: any) {
   const [showForm, setShowForm] = useState(false);
@@ -79,12 +79,12 @@ export default function Settings(props: any) {
     backgroundSize: "90px 90px",
     backgroundPosition: "center 1px"}} />
       {showForm && (
-        <form className="settings-form" action="">
+        <Stack className="settings-form" >
           <a href="https://todoist.com/productivity-methods/pomodoro-technique">
             Learn the Pomodoro Technique!
           </a>
-          <div className="timers">
-            <div className="input-box">
+          <Box className="timers">
+            <Box className="input-box">
               <label htmlFor="work-minutes-input">Work Timer</label>
               <input
                 type="number"
@@ -92,9 +92,9 @@ export default function Settings(props: any) {
                 value={workMinutes}
                 id="work-minutes-input"
               ></input>
-            </div>
+            </Box>
 
-            <div className="input-box">
+            <Box className="input-box">
               <label htmlFor="short-break-minutes-input">Short Break</label>
               <input
                 type="number"
@@ -102,8 +102,8 @@ export default function Settings(props: any) {
                 value={shortBreakMinutes}
                 id="short-break-minutes-input"
               ></input>
-            </div>
-            <div className="input-box">
+            </Box>
+            <Box className="input-box">
               <label htmlFor="long-break-minutes-input">Long Break</label>
               <input
                 type="number"
@@ -111,8 +111,8 @@ export default function Settings(props: any) {
                 value={longBreakMinutes}
                 id="long-break-minutes-input"
               ></input>
-            </div>
-            <div className="input-box">
+            </Box>
+            <Box className="input-box">
               <label htmlFor="break-count-input">Work Cycles</label>
               <input
                 type="number"
@@ -120,13 +120,13 @@ export default function Settings(props: any) {
                 value={props.defaultWorkCycles}
                 id="break-count-input"
               ></input>
-            </div>
-          </div>
-          <h5>
+            </Box>
+          </Box>
+          <Typography>
             If notifications are not showing up on your device, make sure you
             enable browser notifications in your operating system settings!
-          </h5>
-        </form>
+          </Typography>
+        </Stack>
       )}
     </>
   );
