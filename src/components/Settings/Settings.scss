@@ -2,15 +2,16 @@
   background-color: transparent;
   background-image: url("../../assets/img/settings.svg");
   background-repeat: no-repeat;
-  background-position: center 0%;
-  background-size: 9.5vh;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  min-width: 90px;
-  width: 7vw;
-  height: 10vh;
-  transition: none;
+  background-position: center center;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 80px 80px;
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-width: 80px;
+  outline: inherit;
 }
 
 .settings-form {
