@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Settings.scss";
-import { Box, Button, Link, Stack, Typography } from "@mui/joy";
+import { Box, Button, Stack, Typography } from "@mui/joy";
 
 export default function Settings(props: any) {
   const [showForm, setShowForm] = useState(false);
