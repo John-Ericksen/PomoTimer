@@ -184,6 +184,10 @@ export default function Timer(props: any) {
     <div className="timer">
       <div className="top-row">
         <Button
+          variant="outlined"
+          sx={{
+            fontSize: "2vw",
+          }}
           className={
             props.currentMode === "work" ? "button-work" : "button-break"
           }
@@ -192,18 +196,26 @@ export default function Timer(props: any) {
           Work Timer
         </Button>
         <Button
+          variant="outlined"
           className={
             props.currentMode === "work" ? "button-work" : "button-break"
           }
           onClick={shortBreak}
+          sx={{
+            fontSize: "2vw",
+          }}
         >
           Short Break
         </Button>
         <Button
+          variant="outlined"
           className={
             props.currentMode === "work" ? "button-work" : "button-break"
           }
           onClick={longBreak}
+          sx={{
+            fontSize: "2vw",
+          }}
         >
           Long Break
         </Button>
@@ -219,15 +231,15 @@ export default function Timer(props: any) {
           setDefaultWorkCycles={props.setDefaultWorkCycles}
         />
         <Button
-          className={
-            isCountingDown ? "pause-button" : "play-button"
-          }
+          className={isCountingDown ? "pause-button" : "play-button"}
           onClick={toggleIsCountingDown}
-          sx={{backgroundColor: "transparent"}}
-        >
-          {isCountingDown ? "Pause" : "Start"}
-        </Button>
-        <Button onClick={nextMode} sx={{backgroundColor: "transparent"}} className="skip"></Button>
+          sx={{ backgroundColor: "transparent" }}
+        ></Button>
+        <Button
+          onClick={nextMode}
+          sx={{ backgroundColor: "transparent" }}
+          className="skip"
+        ></Button>
       </div>
     </div>
   );
